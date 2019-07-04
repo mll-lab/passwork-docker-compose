@@ -1,0 +1,3 @@
+[submodule "sites/prod"]
+	path = sites/prod
+	url = http://passwork.download/passwork/passwork.git

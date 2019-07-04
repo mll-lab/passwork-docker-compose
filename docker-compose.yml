@@ -1,0 +1,25 @@
+version: '2.3'
+
+services:
+  web:
+    image: passwork/nginx-php7
+    ports:
+      - 30080:80
+      - 30443:443
+    volumes:
+      - ./conf/nginx:/server/conf/nginx
+      - ./conf/php:/server/conf/php
+      - ./conf/ssl:/server/conf/ssl
+      - ./conf/postfix:/server/conf/postfix
+      - ./log/nginx:/server/log/nginx
+      - ./log/php:/server/log/php
+      - ./log/syslog:/server/log/syslog
+      - ./sites/:/server/sites/
+    command: bash -c "/server/permissions && /server/run"
+
+  mongo:
+    image: passwork/mongo
+    volumes:
+    - ./conf/mongo:/server/conf
+    - ./log/mongo:/server/log
+    - ./data/mongo:/server/data
