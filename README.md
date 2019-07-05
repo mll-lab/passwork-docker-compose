@@ -21,6 +21,10 @@ Now initialize and update the actual site as a submodule.
 git submodule init && git submodule update
 ```
 
+This configuration enforces the use of SSL. Put your certificate and key under:
+- `conf/ssl/prod.crt`
+- `conf/ssl/prod.key`
+
 Run the setup script:
 
 ```bash
