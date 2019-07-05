@@ -17,7 +17,8 @@ services:
       - ./log/php:/server/log/php
       - ./log/syslog:/server/log/syslog
       - ./site/:/server/site/
-    command: bash -c "/server/permissions && /server/run"
+      - ./permissions:/usr/bin/permissions
+    command: bash -c "permissions && /server/run"
 
   mongo:
     image: passwork/mongo
