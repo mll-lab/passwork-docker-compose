@@ -2,6 +2,8 @@ version: '2.3'
 
 services:
   web:
+    # php -v => PHP 7.2.17-1+ubuntu18.04.1+deb.sury.org+3
+    # nginx -v => nginx/1.14.0 (Ubuntu)
     image: passwork/nginx-php7
     ports:
       - 80:80
@@ -20,6 +22,7 @@ services:
     command: bash -c "permissions && /server/run"
 
   mongo:
+    # mongo > db.version() => 3.0.15
     image: passwork/mongo
     volumes:
     - ./conf/mongo:/server/conf

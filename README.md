@@ -41,7 +41,7 @@ Open the page in your browser to get to the Sign Up page.
 
 Fill in login and password for the first user.
 This user will become the owner and administrator of your installation.
-Click `Upload keys` and select `.lic` and `reginfo.json` file.
+Click `Upload keys` and select `*.lic` and `reginfo.json` file.
 
 ## Usage
 
