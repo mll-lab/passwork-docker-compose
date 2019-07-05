@@ -7,14 +7,16 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./conf/nginx:/server/conf/nginx
+      - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./conf/nginx/site.conf:/etc/nginx/site-enabled/site.conf
       - ./conf/php:/server/conf/php
-      - ./conf/ssl:/server/conf/ssl
       - ./conf/postfix:/server/conf/postfix
+      - ./conf/ssl:/server/conf/ssl
+      - ./log/mongo:/server/log/mongo
       - ./log/nginx:/server/log/nginx
       - ./log/php:/server/log/php
       - ./log/syslog:/server/log/syslog
-      - ./sites/:/server/sites/
+      - ./site/:/server/site/
     command: bash -c "/server/permissions && /server/run"
 
   mongo:
