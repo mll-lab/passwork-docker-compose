@@ -12,7 +12,6 @@ services:
       - ./conf/php:/server/conf/php
       - ./conf/postfix:/server/conf/postfix
       - ./conf/ssl:/server/conf/ssl
-      - ./log/mongo:/server/log/mongo
       - ./log/nginx:/server/log/nginx
       - ./log/php:/server/log/php
       - ./log/syslog:/server/log/syslog
