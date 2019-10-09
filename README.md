@@ -13,6 +13,7 @@ Clone this repository onto your production server.
 
 ```bash
 git clone https://github.com/mll-lab/passwork-docker-compose.git passwork
+cd passwork
 ```
 
 Now initialize and update the actual site as a submodule.
@@ -22,8 +23,8 @@ git submodule init && git submodule update
 ```
 
 This configuration enforces the use of SSL. Put your certificate and key under:
-- `config/ssl/site.crt`
-- `config/ssl/site.key`
+- `conf/ssl/site.crt`
+- `conf/ssl/site.key`
 
 Run the setup script:
 
@@ -79,8 +80,29 @@ docker-compose exec web service postfix reload
 
 Read how backup's generally work [in the Backups manual](https://github.com/passwork-me/manuals-en/blob/master/Backups.md)
 
-You can execute the `mongodump` and `mongorestore` commands within the web container
+Mount a volume into the mongo container by modifying `docker-compose.yml`.
+The following is only an example, the change depends upon the mount point on your system.
 
-```bash
-docker-compose exec web mongodump
+```diff
+  mongo:
+    # mongo > db.version() => 3.0.15
+    image: passwork/mongo
+    volumes:
+    - ./conf/mongo:/server/conf
+    - ./log/mongo:/server/log
+    - ./data/mongo:/server/data
++   - /mnt/backup:/server/backup
 ```
+
+Run `docker-compose up -d` to apply the changes.
+
+Create a backup through:
+
+    docker-compose exec mongo mongodump -o /server/backup/passwork-$(date +"%Y-%m-%d")
+
+Restore a backup:
+
+    docker-compose exec mongo mongorestore /server/backup/passwork-xxxx-xx-xx
+
+When errors pop up during the restore process, you might want to use the `--drop`
+option to completely reset the database.
