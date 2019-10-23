@@ -98,7 +98,9 @@ Run `docker-compose up -d` to apply the changes.
 
 Create a backup through:
 
-    docker-compose exec mongo mongodump -o /server/backup/passwork-$(date +"%Y-%m-%d")
+    ./backup.sh
+
+This will create an archive named `passwork-%Y-%m-%d` with the current date, e.g. `passwork-2019-04-20`.
 
 Restore a backup:
 
