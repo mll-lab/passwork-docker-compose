@@ -1,6 +1,6 @@
 # Install Passwork using Docker Compose 
 
-Based upon https://github.com/passwork-me/docker
+Based upon https://github.com/passwork-me/docker and https://www.notion.so/Passwork-Manuals-e5aa17375b3d49d282e4279982c255ac
 
 ## Prerequisites
 
